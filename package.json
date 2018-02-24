@@ -1,0 +1,19 @@
+{
+  "name": "redditapiserver",
+  "version": "1.0.0",
+  "description": "API server that will expose a specified subreddit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shumatpf/RedditAPIServer.git"
+  },
+  "author": "Peter Shumate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shumatpf/RedditAPIServer/issues"
+  },
+  "homepage": "https://github.com/shumatpf/RedditAPIServer#readme"
+}
