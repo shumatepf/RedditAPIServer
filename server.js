@@ -11,6 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = 8080;
 var posts = [];
 
+//run();
+
+console.log('request is going to happen');
+
 request({
   url: url,
   json: true
@@ -18,24 +22,22 @@ request({
   if(err || response.statusCode != 200) {
     console.log(err);
   } else {
+    console.log('finished');
     posts = body.data.children;
-    console.log(posts.length);
-    for(i = 0; i < posts.length; i++) {
-      console.log(posts[i].data.title);
-    }
+    run();
   }
 });
 
-console.log(posts.length);
-
-for(i = 0; i < posts.length; i++) {
-  console.log(posts[i]);
+function run() {
+  //console.log('require is going to be invoked');
+  //let posts = require('./apps/parsejson.js')(request, url);
+  console.log('finished should be above this');
+  require('./apps/routes.js')(app, posts);
+  app.listen(port, () => {
+    console.log('We are live on ' + port);
+  });
 }
 
-//var data = require('./apps/routes.js')(request, url);
-console.log('abc');
-
-require('./apps/routes.js')(app);
-app.listen(port, () => {
-  console.log('We are live on ' + port);
-});
+function callback(){
+  console.log('finished');
+}
