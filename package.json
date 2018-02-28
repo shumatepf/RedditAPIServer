@@ -4,7 +4,7 @@
   "description": "API server that will expose a specified subreddit",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/shumatpf/RedditAPIServer/issues"
   },
-  "homepage": "https://github.com/shumatpf/RedditAPIServer#readme"
+  "homepage": "https://github.com/shumatpf/RedditAPIServer#readme",
+  "dependencies": {
+    "request": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.1"
+  }
 }
