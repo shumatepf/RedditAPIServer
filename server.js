@@ -1,9 +1,14 @@
 // server
 const request = require('request');
-const http = require ('http');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const url = 'https://www.reddit.com/r/space/top/.json';
+const url = 'https://www.reddit.com/r/space/.json';
 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const port = 8080;
 var posts = [];
 
 request({
@@ -29,8 +34,8 @@ for(i = 0; i < posts.length; i++) {
 
 //var data = require('./apps/routes.js')(request, url);
 console.log('abc');
-http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('test');
-  res.end();
-}).listen(8080);
+
+require('./apps/routes.js')(app);
+app.listen(port, () => {
+  console.log('We are live on ' + port);
+});

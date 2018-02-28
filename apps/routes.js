@@ -1,9 +1,6 @@
-module.exports = function(request, url) {
-  request({
-    url: url,
-    json: true
-  }, function(err, response, body) {
-    if (err) return null;
-    console.log(body);
+module.exports = function(app) {
+  app.get('/redditer/:search', (req, res) => {
+    var search = req.params.search;
+    res.send(search);
   });
 }
