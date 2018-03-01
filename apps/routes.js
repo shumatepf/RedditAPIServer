@@ -1,3 +1,4 @@
+//get function. prints out the information from the posts that were pulled using request
 module.exports = function(app, posts) {
   app.get('/redditer/:search', async (req, res) => {
     var search = req.params.search;
@@ -7,11 +8,10 @@ module.exports = function(app, posts) {
     for (i = 0; i < posts.length; i++) {
       var title = posts[i].data.title;
       if (title.toLowerCase().includes(search)) {
-        var commentslink = 'https://www.reddit.com' + posts[i].data.permalink;
 	res.write('<b>' + title + '</b><br>');
         res.write('<i>Author:</i> ' + posts[i].data.author + '<br>');
         res.write('<i>Score:</i> ' + posts[i].data.score + '<br>');
-        res.write('<a href=' + commentslink + '>' +
+        res.write('<a href=' + posts[i].data.url+ '>' +
           posts[i].data.num_comments + ' Comments</a><br><br><hr>');
       }
     }
