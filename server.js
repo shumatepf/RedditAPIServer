@@ -10,22 +10,22 @@ const port = 8080;
 var posts = [];
 
 //pulls out the post information from the reddit json object
-request({
-  url: url,
-  json: true
-}, async function(err, response, body) {
-  if(err || response.statusCode != 200) {
-    console.log(err);
-  } else {
-    posts = body.data.children;
-    run();
-  }
-});
-
-//runs the server. only called once the request is completed
-function run() {
-  require('./apps/routes.js')(app, posts);
-  app.listen(port, () => {
-    console.log('We are live on ' + port);
+var parse = function (){
+  request({
+    url: url,
+    json: true
+  }, function(err, response, body) {
+    if(err || response.statusCode != 200) {
+      console.log(err);
+    } else {
+      console.log('parse');
+      posts = body.data.children;
+      require('./apps/routes.js')(app, posts);
+    }
   });
-}
+};
+
+app.listen(port, () => {
+  parse();
+  console.log('We are live on ' + port);
+});
