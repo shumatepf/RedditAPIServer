@@ -3,10 +3,18 @@ module.exports = function(app, posts) {
     console.log('get is running');
     //var posts = await require('./apps/parsejson.js')(request, url);
     var search = req.params.search;
+    res.write('<h1>Posts from /r/space Containing: ' + search + '</h1>');
     for (i = 0; i < posts.length; i++) {
-      var str = '' + posts[i].data.title;
-      if (str.toLowerCase().includes(search)){
-	res.write(str + '\n');
+      var title = posts[i].data.title;
+      var author = posts[i].data.author;
+      var score = posts[i].data.score;
+      var numcomments = posts[i].data.num_comments;
+      var commentslink = 'https://www.reddit.com' + posts[i].data.permalink;
+      if (title.toLowerCase().includes(search)){
+	res.write('<b>' + title + '</b><br>');
+	res.write('Author: ' + author + '<br>');
+	res.write('Score: ' + score + '<br>');
+	res.write('<a href=' + commentslink + '>' +  numcomments + ' Comments</a><br><br>');
       }
     }
     res.write(search);
