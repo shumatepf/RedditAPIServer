@@ -1,6 +1,6 @@
 //get function. prints out the information from the posts that were pulled using request
 module.exports = function(app, posts) {
-  app.get('/redditer/:search', async (req, res) => {
+  app.get('/redditer/:search', (req, res) => {
     var search = req.params.search;
     res.write('<h1>Posts from /r/space Containing: ' + search + '</h1><hr>');
 
